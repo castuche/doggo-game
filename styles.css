@@ -1,0 +1,21 @@
+body {
+    padding: 0;
+    text-align: center;
+    margin:0;
+  }
+  
+#game-intro {
+  }
+  
+  
+#game-screen {
+    display: none;
+    width: 600px;
+    height:800px;
+    background-color: blue;
+  }
+
+#game-end {
+    display: none;
+  }
+  
