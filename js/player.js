@@ -4,8 +4,8 @@ class Player {
         this.element = document.createElement('img');
         this.width = 130 ;
         this.height = 130 ;
-        this.left = (gameScreen.offsetWidth- this.width)/2 ;
-        this.top = gameScreen.offsetHeight - this.height ;
+        this.left = 300 ;
+        this.top = 490 ;
         this.direction = 0;
 
         this.element.src = 'imgs/pngwing.com.png';
@@ -19,11 +19,21 @@ class Player {
     }
 
     move(){
-
+        if(this.left>= 0) {
+            this.left+=this.direction;
+        } else {
+            this.left = 0;
+        }
+        if(this.left<= 800 -this.width) {
+            this.left+=this.direction;
+        } else {
+            this.left = 800 - this.width;
+        }
+        this.updatePosition();
     }
 
     updatePosition(){
-
+        this.element.style.left=`${this.left}px`
     }
 
     bark(){
