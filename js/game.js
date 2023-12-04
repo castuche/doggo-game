@@ -9,7 +9,7 @@ class Game {
         this.rewards = [] ;
         this.squirrels = [] ;
         this.score = 0 ;
-        this.timer = 60 ;
+        this.timer = 20 ;
         this.gameIsOver = false ;
         this.animateId = null;
 
@@ -23,10 +23,20 @@ class Game {
         this.gameScreen.style.height = `${this.height}px`;
         this.gameScreen.style.width = `${this.width}px`;
         this.player = new Player (this.gameScreen);
+        let updateTimer = ()  => {
+            this.timer= this.timer-1 ;
+            document.getElementById('timer').innerHTML=`${this.timer}`;
+        }
+        let intervalId = setInterval(updateTimer,1000)
         this.gameLoop();
     }
 
     gameLoop(){
+
+        if (this.timer === 0){
+            this.gameIsOver = true;
+        }
+
         this.player.move();
 
         let newSquirrels =[];
