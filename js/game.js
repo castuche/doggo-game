@@ -124,8 +124,10 @@ class Game {
 
         if (this.gameIsOver){
             this.gameScreen.style.display='none';
+            document.getElementById('final-score').innerHTML=`${this.score}`;
             this.endScreen.style.display='block';
-            this.player.element.remove();
+            this.player.element.remove()
+    
         }
         else {
         this.animateId = requestAnimationFrame ( () => this.gameLoop());
