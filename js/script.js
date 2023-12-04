@@ -13,7 +13,9 @@ window.onload = function (){
     startButton.addEventListener('click', () => {
         startGame();})
 
-    
+/*     restartButton.addEventListener('click', () => {
+            location.reload()}) */
+
     document.addEventListener('keydown', event => {
         if(event.code === 'ArrowLeft'){
             console.log('go left');

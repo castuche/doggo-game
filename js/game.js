@@ -6,7 +6,7 @@ class Game {
         this.height = 600 ;
         this.width = 800 ; 
         this.player = null ;
-        this.meat = [] ;
+        this.rewards = [] ;
         this.squirrels = [] ;
         this.score = 0 ;
         this.timer = 60 ;
@@ -28,6 +28,33 @@ class Game {
 
     gameLoop(){
         this.player.move();
+
+        let newRewards = [];
+        this.rewards.forEach(currentReward => {
+            currentReward.move()
+            if (currentReward.top<600-currentReward.element.height){
+                if (this.player.didCollide(currentReward)) {
+                    console.log('reward caught');
+                    currentReward.element.remove()
+                    this.score+=1;
+                    console.log (this.score);
+                }
+                newRewards.push(currentReward)   
+            }  
+            else {
+                currentReward.element.remove()
+            }
+            
+        })
+
+        this.rewards = newRewards ;
+
+        if (this.animateId % 300 === 0){
+            this.rewards.push(new Rewards(this.gameScreen))
+        }
+
+        document.getElementById('score').innerHTML = this.score;
+
         this.animateId = requestAnimationFrame ( () => this.gameLoop());
     }
 

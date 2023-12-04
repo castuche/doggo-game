@@ -2,7 +2,7 @@ class Player {
     constructor(gameScreen){
         this.gameScreen = gameScreen;
         this.element = document.createElement('img');
-        this.width = 130 ;
+        this.width = 180 ;
         this.height = 130 ;
         this.left = 300 ;
         this.top = 490 ;
@@ -40,8 +40,19 @@ class Player {
 
     }
 
-    didCatch(stuff){
-
-    }
-
+    didCollide(reward){
+        const playerRect = this.element.getBoundingClientRect()
+        const rewardRect = reward.element.getBoundingClientRect()
+    
+        if (
+          playerRect.left < rewardRect.right &&
+          playerRect.right > rewardRect.left &&
+          playerRect.top < rewardRect.bottom &&
+          playerRect.bottom > rewardRect.top
+        ) {
+          return true
+        } else {
+          return false
+        }
+      }
 }
