@@ -25,10 +25,14 @@ window.onload = function (){
             console.log('go right');
             game.player.direction = 2; 
         }
+        if(event.code === 'ArrowUp'){
+            console.log('bark');
+            game.bark();
+        }
     })
 
     document.addEventListener('keyup', event => {
-        if(event.code === 'ArrowLeft' || event.code === 'ArrowRight'){
+        if(event.code === 'ArrowLeft' || event.code === 'ArrowRight' || event.code === 'ArrowUp'){
             console.log ('stop moving')
             game.player.direction=0
         }

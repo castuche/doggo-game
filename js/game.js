@@ -8,6 +8,7 @@ class Game {
         this.player = null ;
         this.rewards = [] ;
         this.squirrels = [] ;
+        this.woofs = [] ;
         this.score = 0 ;
         this.timer = 20 ;
         this.gameIsOver = false ;
@@ -29,6 +30,12 @@ class Game {
         }
         let intervalId = setInterval(updateTimer,1000)
         this.gameLoop();
+    }
+
+    bark(){
+        let woof = new Woofs(this.gameScreen,this.player.left,this.player.height);
+        woof.move();
+        this.woofs.push(woof);
     }
 
     gameLoop(){
@@ -80,6 +87,30 @@ class Game {
         })
 
         this.rewards = newRewards ;
+
+
+        let newWoofs = [];
+        this.woofs.forEach(currentWoof => {
+            currentWoof.move();
+            let collided = false;
+            if (currentWoof.top>0) {
+                this.squirrels.forEach((currentSquirrel) => {
+                    if (currentWoof.didCollide(currentSquirrel)){
+                        currentSquirrel.element.remove();
+                        currentWoof.element.remove();
+                        this.score += 3;
+                        collided = true ;
+                    }
+                })
+                if (!collided){
+                    newWoofs.push(currentWoof);
+                }
+                else {
+                    currentWoof.element.remove()
+                }
+            }})
+
+        this.woofs = newWoofs ;
 
         if (this.animateId % 300 === 0){
             this.rewards.push(new Rewards(this.gameScreen))

@@ -7,6 +7,7 @@ class Player {
         this.left = 300 ;
         this.top = 490 ;
         this.direction = 0;
+        this.projectiles = [];
 
         this.element.src = 'imgs/pngwing.com.png';
         this.element.style.position = 'absolute';
@@ -34,10 +35,6 @@ class Player {
 
     updatePosition(){
         this.element.style.left=`${this.left}px`
-    }
-
-    bark(){
-
     }
 
     didCollide(reward){
