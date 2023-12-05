@@ -61,6 +61,20 @@ class Game {
             else {
                 currentSquirrel.element.remove()
                 console.log('squirrel reached floor');
+                const xPosition = currentSquirrel.left;
+                const yPosition = 560;
+    
+                const minus2 = document.createElement('img');
+                minus2.src = 'imgs/minus2.png';
+                minus2.style.width = '60px';
+                minus2.style.height = '60px';
+                minus2.style.position = 'absolute';
+                minus2.style.left = `${xPosition}px`;
+                minus2.style.top = `${yPosition}px`;
+                this.gameScreen.appendChild(minus2);
+                setTimeout(() => {
+                    minus2.remove();
+                }, 330);
                 this.score-=2; 
                 }
             
