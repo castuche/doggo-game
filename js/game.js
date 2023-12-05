@@ -10,6 +10,7 @@ class Game {
         this.squirrels = [] ;
         this.woofs = [] ;
         this.score = 0 ;
+        this.level = 1 ;
         /* this.timer = 20 ; */
         this.gameIsOver = false ;
         this.animateId = null;
@@ -36,6 +37,19 @@ class Game {
         let woof = new Woofs(this.gameScreen,this.player.left,this.player.height);
         woof.move();
         this.woofs.push(woof);
+    }
+
+    checkLevel() {
+        if(this.score>=10 && this.score<20) {
+            this.level = 2;
+        }
+        else if(this.score>=20 && this.score<30) {
+            this.level = 3;
+        }
+        else if(this.score>=30){
+            this.level = 4;
+        }
+        document.getElementById('level-number').innerHTML=`${this.level}`;
     }
 
     gameLoop(){
@@ -74,7 +88,8 @@ class Game {
                 setTimeout(() => {
                     minus2.remove();
                 }, 330);
-                this.score-=2; 
+                this.score-=2;
+                this.checkLevel() ; 
                 }
             
         })
@@ -89,6 +104,7 @@ class Game {
                     console.log('reward caught');
                     currentReward.element.remove()
                     this.score+=1;
+                    this.checkLevel();
                     console.log (this.score);
                 }
                 newRewards.push(currentReward)   
@@ -112,6 +128,7 @@ class Game {
                         currentSquirrel.element.remove();
                         currentWoof.element.remove();
                         this.score += 3;
+                        this.checkLevel() ;
                         collided = true ;
                     }
                 })

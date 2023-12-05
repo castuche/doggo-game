@@ -133,3 +133,7 @@ body button {
   margin-bottom: 20px;
   margin-top: 20px;
   }
+
+  .strong {
+    font-weight: 550;
+  }
