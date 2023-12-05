@@ -19,7 +19,7 @@ class Game {
     start (){
         this.startScreen.style.display = 'none';
         this.endScreen.style.display = 'none';
-        this.gameScreen.style.display = 'block';
+        this.gameScreen.style.display = 'flex';
         console.log ('displaying gamescreen') ;
         this.gameScreen.style.height = `${this.height}px`;
         this.gameScreen.style.width = `${this.width}px`;
@@ -108,15 +108,16 @@ class Game {
                 else {
                     currentWoof.element.remove()
                 }
-            }})
+            }
+            else {currentWoof.element.remove()}})
 
         this.woofs = newWoofs ;
 
-        if (this.animateId % 300 === 0){
+        if (this.animateId % 150 === 0){
             this.rewards.push(new Rewards(this.gameScreen))
         }
 
-        if (this.animateId % 500 === 0){
+        if (this.animateId % 200 === 0){
             this.squirrels.push(new Squirrels(this.gameScreen))
         }
 

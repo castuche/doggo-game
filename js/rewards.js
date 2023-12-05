@@ -17,7 +17,7 @@ class Rewards {
     }
 
     move() {
-        this.top += 1;
+        this.top += 3;
         this.udpatePosition ()
     }
 

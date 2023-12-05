@@ -17,7 +17,7 @@ class Squirrels {
     }
 
     move() {
-        this.top += 1;
+        this.top += 2;
         this.udpatePosition ()
     }
 

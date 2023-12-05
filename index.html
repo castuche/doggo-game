@@ -8,19 +8,31 @@
     </head>
 
     <body>
-        <div id="game-intro">
-            <h1>The Doggo Game</h1>
-            <div id="left-image-intro"><!-- left image ---> </div>
-            <div id="right-container-intro">
-                <div id="game-rules"><!-- rules of the game ---></div>
-                <div id="start-button">
-                    <button>START GAME</button>
-                </div>
-            </div>
-            
-        </div>
-
         <div id="game-container">
+        <div id="game-intro">
+            <div id="game-title"><h1>THE DOGGO GAME</h1></div>
+            <div id="intro-page-elements">
+            <div id="left-image-intro"><img src="imgs/intro-dog.png" alt="sitting dog looking right"> </div>
+            <div id="right-container-intro">
+                <div id="game-rules">
+                    <h2>Rules</h2>
+                    <ul>
+                        <li>Move your doggo with the LEFT and RIGHT arrows</li>
+                        <li>Bark with the UP arrow</li></ul>
+                    <h2>Points</h2>
+                    <ul>
+                        <li>+1 for a steak</li>
+                        <li>+2 for woofing at a squirrel</li>
+                        <li>-2 if a squirrel reaches the floor</li>
+                        <li>Game Over if a squirrel touches your doggo</li>
+                    </ul></div>
+            </div>
+        </div>
+            <div id="start-button">
+            <button>START GAME</button>
+            </div>   
+        </div>
+        
             <div id='game-screen'>
                 <div id="stats">
                     <h2>Stats</h2>
@@ -28,14 +40,14 @@
                     <p>Timer: <span id="timer">60</span> sec</p>
                 </div>
             </div>
-        </div>
+      
 
         <div id='game-end'>
             <h2>Time's up doggo!<h2>
             <div id="end-score"><p>your score : <span id='final-score'>SCORE</span></p></div>
-            <div id="restart-button"><!-- restart button ---></div> 
+            <div id="restart-button"><button>TRY AGAIN</button></div> 
         </div>
-
+    </div>
         <script type="text/javascript" src="js/woof.js"></script>
         <script type="text/javascript" src="js/squirrels.js"></script>
         <script type="text/javascript" src="js/rewards.js"></script>

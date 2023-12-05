@@ -2,7 +2,7 @@ class Woofs {
     constructor (gameScreen, left, height) {
         this.gameScreen = gameScreen ;
         this.width = 80 ;
-        this.height = 20 ;
+        this.height = 60 ;
         this.left = left;
         this.top = 600 - height ;
         this.element = document.createElement('img') ;
@@ -36,6 +36,21 @@ class Woofs {
           woofRect.top < squirrelRect.bottom &&
           woofRect.bottom > squirrelRect.top
         ) {
+          const xPosition = woofRect.left - 400 ;
+          const yPosition = woofRect.top;
+
+            let plus2 = document.createElement('img');
+            plus2.src = 'imgs/plus2.png';
+            plus2.style.width = '60px';
+            plus2.style.height = '60px';
+            plus2.style.position = 'absolute';
+            plus2.style.left = `${xPosition}px`;
+            plus2.style.top = `${yPosition}px`;
+            this.gameScreen.appendChild(plus2);
+            setTimeout(() => {
+                plus2.remove();
+            }, 330);
+
           return true
         } else {
           return false
