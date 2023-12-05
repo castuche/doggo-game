@@ -92,12 +92,25 @@ body {
 
   #leaderboard {
   background-color: rgba(240,255,255,0.6); 
-  padding: 50px;
+  padding: 40px 30px 60px 30px;
+  margin: 10px;
   text-align: center;
+  border-radius: 5px;
   }
 
 #leaderboard ul li {
   list-style: none; 
+}
+
+#leaderboard-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#leaderboard-container img {
+  width: 30%;
 }
 
   
@@ -110,7 +123,7 @@ h1 {
 
 body button {
   width: 50%;
-  font-size: 30px;
+  font-size: 25px;
   background-color: darkblue;
   color: #fff;
   padding: 20px 40px;
