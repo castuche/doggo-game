@@ -39,16 +39,16 @@ class Woofs {
           const xPosition = woofRect.left - 400 ;
           const yPosition = woofRect.top;
 
-            let plus2 = document.createElement('img');
-            plus2.src = 'imgs/plus2.png';
-            plus2.style.width = '60px';
-            plus2.style.height = '60px';
-            plus2.style.position = 'absolute';
-            plus2.style.left = `${xPosition}px`;
-            plus2.style.top = `${yPosition}px`;
-            this.gameScreen.appendChild(plus2);
+            let plus3 = document.createElement('img');
+            plus3.src = 'imgs/plus3.png';
+            plus3.style.width = '60px';
+            plus3.style.height = '60px';
+            plus3.style.position = 'absolute';
+            plus3.style.left = `${xPosition}px`;
+            plus3.style.top = `${yPosition}px`;
+            this.gameScreen.appendChild(plus3);
             setTimeout(() => {
-                plus2.remove();
+                plus3.remove();
             }, 330);
 
           return true

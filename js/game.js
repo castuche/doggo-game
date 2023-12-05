@@ -55,7 +55,6 @@ class Game {
                     currentSquirrel.element.remove()
                     this.gameIsOver = true;
                 }
-            
                 newSquirrels.push(currentSquirrel)   
             }  
             else {
@@ -139,9 +138,36 @@ class Game {
 
         if (this.gameIsOver){
             this.gameScreen.style.display='none';
-            document.getElementById('final-score').innerHTML=`${this.score}`;
             this.endScreen.style.display='block';
-            this.player.element.remove()
+            this.player.element.remove();
+
+            let playerName ;
+            function getPlayerName() {
+                let inputPlayerName = prompt("GAME OVER ! Please enter your name:");
+                if (inputPlayerName != null && inputPlayerName != "") {
+                    playerName = inputPlayerName
+                } else { playerName = 'Anonymous doggo'
+                }
+              }
+            getPlayerName();
+
+            document.getElementById('final-score').innerHTML=`${this.score}`;
+            document.getElementById('player-name').innerHTML=`${playerName}`;
+
+            let score = this.score ;
+            let existingScores = JSON.parse(localStorage.getItem('scores')) || [];
+            existingScores.push({name: playerName, score}) ;
+            existingScores.sort((a,b) => b.score - a.score) ;
+            localStorage.setItem('scores', JSON.stringify(existingScores)) ;
+
+            let scores= JSON.parse(localStorage.getItem('scores')) || [];
+            let leaderboardElement = document.getElementById('leaderboard');
+            scores.slice(0,4).forEach((entry, index) => {
+                let listItem = document.createElement('li');
+                listItem.style.listStyle = 'none';
+                listItem.innerHTML = `${index +1}. ${entry.name} : ${entry.score} points` ;
+                leaderboardElement.appendChild(listItem) ;
+            })
     
         }
         else {
