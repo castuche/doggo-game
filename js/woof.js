@@ -36,7 +36,7 @@ class Woofs {
           woofRect.top < squirrelRect.bottom &&
           woofRect.bottom > squirrelRect.top
         ) {
-          const xPosition = woofRect.left - 400 ;
+          const xPosition = woofRect.left - 500 ;
           const yPosition = woofRect.top;
 
             let plus3 = document.createElement('img');

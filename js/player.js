@@ -47,7 +47,7 @@ class Player {
           playerRect.top < rewardRect.bottom &&
           playerRect.bottom > rewardRect.top
         ) {
-            const xPosition = playerRect.left - 400 ;
+            const xPosition = playerRect.left - 500;
             const yPosition = playerRect.top;
     
             const plus1 = document.createElement('img');
