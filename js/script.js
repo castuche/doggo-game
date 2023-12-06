@@ -29,6 +29,15 @@ window.onload = function (){
             console.log('bark');
             game.bark();
         }
+        if(event.code === 'KeyF'){
+            console.log('French doggo');
+            game.makeItFrench();
+        }
+
+        if(event.code === 'KeyS'){
+            console.log('Spidy doggo');
+            game.makeItSpiderman();
+        }
     })
 
     document.addEventListener('keyup', event => {

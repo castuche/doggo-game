@@ -20,6 +20,8 @@ class Game {
         this.audioBomb = new Audio ('audio/bomb.mp3') ;
         this.audioGulp = new Audio ('audio/gulp.mp3') ;
         this.audioOops = new Audio ('audio/oops.mp3') ;
+        this.isFrench = false ;
+        this.isSpiderman = false ;
 
         this.audioTheme.volume = 0.2;
     }
@@ -45,6 +47,17 @@ class Game {
         let woof = new Woofs(this.gameScreen,this.player.left,this.player.height);
         woof.move();
         this.audioWoof.play();
+
+        if (this.isFrench){
+            woof.element.src = 'imgs/ouaf.png';
+            woof.element.style.height = 40;
+        }
+
+        if (this.isSpiderman){
+            woof.element.src = 'imgs/spider.png';
+            woof.element.style.height = 40;
+        }
+
         this.woofs.push(woof);
     }
 
@@ -59,6 +72,18 @@ class Game {
             this.level = 4;
         }
         document.getElementById('level-number').innerHTML=`${this.level}`;
+    }
+
+    makeItFrench(){
+        this.player.element.src='imgs/doggo-fr.png';
+        this.isFrench = true ;
+        this.isSpiderman = false ;
+        }
+
+    makeItSpiderman(){
+        this.player.element.src='imgs/doggo-spidy.png';
+        this.isSpiderman = true ;
+        this.isFrench = false ;
     }
 
     gameLoop(){
