@@ -130,6 +130,8 @@ class Game {
                         this.score += 3;
                         this.checkLevel() ;
                         collided = true ;
+                        currentSquirrel.toBeRemoved = true;
+                        currentSquirrel.element.remove();
                     }
                 })
                 if (!collided){
@@ -140,16 +142,29 @@ class Game {
                 }
             }
             else {currentWoof.element.remove()}})
+        
+        this.squirrels = this.squirrels.filter((squirrel) => !squirrel.toBeRemoved);
+        this.woofs = newWoofs;
 
         this.woofs = newWoofs ;
 
+        if (this.level===1){
         if (this.animateId % 150 === 0){
             this.rewards.push(new Rewards(this.gameScreen))
         }
 
         if (this.animateId % 200 === 0){
             this.squirrels.push(new Squirrels(this.gameScreen))
-        }
+        }}
+
+        else if (this.level===2 ||this.level===3 ||this.level===4 ){
+            if (this.animateId % 80 === 0){
+                this.rewards.push(new Rewards(this.gameScreen))
+            }
+    
+            if (this.animateId % 150 === 0){
+                this.squirrels.push(new Squirrels(this.gameScreen))
+            }}
 
         document.getElementById('score').innerHTML = this.score;
 
