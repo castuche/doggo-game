@@ -23,7 +23,7 @@ class Game {
         this.isFrench = false ;
         this.isSpiderman = false ;
 
-        this.audioTheme.volume = 0.2;
+        this.audioTheme.volume = 0.5;
     }
 
     start (){
