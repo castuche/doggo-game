@@ -15,7 +15,13 @@ class Game {
         this.timer = 0 ;
         this.gameIsOver = false ;
         this.animateId = null;
+        this.audioTheme = new Audio ('audio/theme.mp3') ;
+        this.audioWoof = new Audio ('audio/woof.mp3') ;
+        this.audioBomb = new Audio ('audio/bomb.mp3') ;
+        this.audioGulp = new Audio ('audio/gulp.mp3') ;
+        this.audioOops = new Audio ('audio/oops.mp3') ;
 
+        this.audioTheme.volume = 0.2;
     }
 
     start (){
@@ -31,12 +37,14 @@ class Game {
            /*  document.getElementById('timer').innerHTML=`${this.timer} `; */
         }
         let intervalId = setInterval(updateTimer,1000) 
+        this.audioTheme.play();
         this.gameLoop();
     }
 
     bark(){
         let woof = new Woofs(this.gameScreen,this.player.left,this.player.height);
         woof.move();
+        this.audioWoof.play();
         this.woofs.push(woof);
     }
 
@@ -77,6 +85,7 @@ class Game {
             else {
                 currentSquirrel.element.remove()
                 console.log('squirrel reached floor');
+                this.audioOops.play();
                 const xPosition = currentSquirrel.left;
                 const yPosition = 560;
     
@@ -104,6 +113,7 @@ class Game {
             if (currentReward.top<600-currentReward.element.height){
                 if (this.player.didCollide(currentReward)) {
                     console.log('reward caught');
+                    this.audioGulp.play();
                     currentReward.element.remove()
                     this.score+=1;
                     console.log (this.score);
@@ -176,6 +186,7 @@ class Game {
                 }
             } else {
                 console.log('bomb touched floor > game over');
+                this.audioBomb.play();
                 currentBomb.element.remove();
                 this.gameIsOver = true;
             }
@@ -227,6 +238,7 @@ class Game {
         document.getElementById('score').innerHTML = this.score;
 
         if (this.gameIsOver){
+            this.audioTheme.pause();
             this.gameScreen.style.display='none';
             this.endScreen.style.display='block';
             this.player.element.remove();

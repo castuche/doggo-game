@@ -19,11 +19,11 @@ window.onload = function (){
     document.addEventListener('keydown', event => {
         if(event.code === 'ArrowLeft'){
             console.log('go left');
-            game.player.direction = -2; 
+            game.player.direction = -3; 
         }
         if(event.code === 'ArrowRight'){
             console.log('go right');
-            game.player.direction = 2; 
+            game.player.direction = 3; 
         }
         if(event.code === 'ArrowUp'){
             console.log('bark');

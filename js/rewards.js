@@ -1,5 +1,5 @@
 class Rewards {
-    constructor (gameScreen) {
+    constructor (gameScreen, levelSpeed) {
         this.gameScreen = gameScreen ;
         this.width = 60 ;
         this.height = 70 ;
@@ -12,12 +12,13 @@ class Rewards {
         this.element.style.width=`${this.width}px`;
         this.element.style.top=`${this.top}px`;
         this.element.style.left=`${this.left}px`;
+        this.speed = levelSpeed ;
 
         this.gameScreen.appendChild(this.element);
     }
 
     move() {
-        this.top += 3;
+        this.top += this.speed ;
         this.udpatePosition ()
     }
 

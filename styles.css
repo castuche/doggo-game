@@ -34,6 +34,7 @@ body {
 #intro-page-elements {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 #intro-page-elements img {
   height:300px;
@@ -42,7 +43,7 @@ body {
 
 #game-rules {
   background-color:rgba(240,255,255,0.6) ;
-  font-size: large;
+  font-size: 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: left;
   color:darkblue;

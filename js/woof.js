@@ -26,15 +26,15 @@ class Woofs {
         this.element.style.top = `${this.top}px`
     }
 
-    didCollide (squirrel){
+    didCollide (squirrelOrBomb){
         const woofRect = this.element.getBoundingClientRect()
-        const squirrelRect = squirrel.element.getBoundingClientRect()
+        const squirrelOrBombRect = squirrelOrBomb.element.getBoundingClientRect()
     
         if (
-          woofRect.left < squirrelRect.right &&
-          woofRect.right > squirrelRect.left &&
-          woofRect.top < squirrelRect.bottom &&
-          woofRect.bottom > squirrelRect.top
+          woofRect.left < squirrelOrBombRect.right &&
+          woofRect.right > squirrelOrBombRect.left &&
+          woofRect.top < squirrelOrBombRect.bottom &&
+          woofRect.bottom > squirrelOrBombRect.top
         ) {
           const xPosition = woofRect.left - 500 ;
           const yPosition = woofRect.top;
