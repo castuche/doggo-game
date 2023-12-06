@@ -9,9 +9,10 @@ class Game {
         this.rewards = [] ;
         this.squirrels = [] ;
         this.woofs = [] ;
+        this.bombs = [] ;
         this.score = 0 ;
         this.level = 1 ;
-        /* this.timer = 20 ; */
+        this.timer = 0 ;
         this.gameIsOver = false ;
         this.animateId = null;
 
@@ -25,11 +26,11 @@ class Game {
         this.gameScreen.style.height = `${this.height}px`;
         this.gameScreen.style.width = `${this.width}px`;
         this.player = new Player (this.gameScreen);
-        /* let updateTimer = ()  => {
-            this.timer= this.timer-1 ;
-            document.getElementById('timer').innerHTML=`${this.timer}`;
+        let updateTimer = ()  => {
+        this.timer= this.timer+1 ;
+           /*  document.getElementById('timer').innerHTML=`${this.timer} `; */
         }
-        let intervalId = setInterval(updateTimer,1000) */
+        let intervalId = setInterval(updateTimer,1000) 
         this.gameLoop();
     }
 
@@ -40,13 +41,13 @@ class Game {
     }
 
     checkLevel() {
-        if(this.score>=10 && this.score<20) {
+        if(this.timer>15 && this.timer<30) {
             this.level = 2;
         }
-        else if(this.score>=20 && this.score<30) {
+        else if(this.timer>=30 && this.timer<45) {
             this.level = 3;
         }
-        else if(this.score>=30){
+        else if(this.timer>=45){
             this.level = 4;
         }
         document.getElementById('level-number').innerHTML=`${this.level}`;
@@ -57,6 +58,8 @@ class Game {
 /*         if (this.timer === 0){
             this.gameIsOver = true;
         } */
+
+        let intervalId = setInterval(this.checkLevel(),1000) ;
 
         this.player.move();
 
@@ -89,7 +92,6 @@ class Game {
                     minus2.remove();
                 }, 330);
                 this.score-=2;
-                this.checkLevel() ; 
                 }
             
         })
@@ -104,7 +106,6 @@ class Game {
                     console.log('reward caught');
                     currentReward.element.remove()
                     this.score+=1;
-                    this.checkLevel();
                     console.log (this.score);
                 }
                 newRewards.push(currentReward)   
@@ -128,10 +129,19 @@ class Game {
                         currentSquirrel.element.remove();
                         currentWoof.element.remove();
                         this.score += 3;
-                        this.checkLevel() ;
                         collided = true ;
                         currentSquirrel.toBeRemoved = true;
                         currentSquirrel.element.remove();
+                    }
+                })
+                this.bombs.forEach((currentBomb) => {
+                    if (currentWoof.didCollide(currentBomb)){
+                        currentBomb.element.remove();
+                        currentWoof.element.remove();
+                        this.score += 3;
+                        collided = true ;
+                        currentBomb.toBeRemoved = true;
+                        currentBomb.element.remove();
                     }
                 })
                 if (!collided){
@@ -148,23 +158,71 @@ class Game {
 
         this.woofs = newWoofs ;
 
+        let newBombs = [];
+        this.bombs.forEach(currentBomb => {
+            currentBomb.move()
+            if (currentBomb.top < this.height - currentBomb.element.height) {
+                let collided = false ;
+                this.woofs.forEach(currentWoof => {
+                    if (currentWoof.didCollide(currentBomb)) {
+                        collided = true;
+                        currentBomb.element.remove();
+                        currentWoof.element.remove();
+                        this.score += 3;
+                    }
+                })
+                if (!collided) {
+                    newBombs.push(currentBomb);
+                }
+            } else {
+                console.log('bomb touched floor > game over');
+                currentBomb.element.remove();
+                this.gameIsOver = true;
+            }
+        });
+    
+        this.bombs = newBombs;
+
         if (this.level===1){
         if (this.animateId % 150 === 0){
-            this.rewards.push(new Rewards(this.gameScreen))
+            this.rewards.push(new Rewards(this.gameScreen, 3))
         }
 
         if (this.animateId % 200 === 0){
-            this.squirrels.push(new Squirrels(this.gameScreen))
+            this.squirrels.push(new Squirrels(this.gameScreen, 2))
         }}
 
-        else if (this.level===2 ||this.level===3 ||this.level===4 ){
+        else if (this.level===2){
             if (this.animateId % 80 === 0){
-                this.rewards.push(new Rewards(this.gameScreen))
+                this.rewards.push(new Rewards(this.gameScreen, 4))
             }
     
             if (this.animateId % 150 === 0){
-                this.squirrels.push(new Squirrels(this.gameScreen))
+                this.squirrels.push(new Squirrels(this.gameScreen, 2.5))
             }}
+
+        else if (this.level===3){
+             if (this.animateId % 50 === 0){
+                this.rewards.push(new Rewards(this.gameScreen, 4.5))
+            }
+        
+            if (this.animateId % 60 === 0){
+                this.squirrels.push(new Squirrels(this.gameScreen, 3))
+            }}
+
+        else if (this.level===4 ){
+            if (this.animateId % 50 === 0){
+                this.rewards.push(new Rewards(this.gameScreen, 4.5))
+            }
+           
+            if (this.animateId % 60 === 0){
+                this.squirrels.push(new Squirrels(this.gameScreen, 3))
+            }
+            
+            if (this.animateId % 200 === 0){
+                this.bombs.push(new Bombs(this.gameScreen, 3))
+            }
+            }
 
         document.getElementById('score').innerHTML = this.score;
 
@@ -175,7 +233,7 @@ class Game {
 
             let playerName ;
             function getPlayerName() {
-                let inputPlayerName = prompt("GAME OVER ! You let a squirrel touch your doggo. Please enter your name:");
+                let inputPlayerName = prompt("GAME OVER ! Please enter your name:");
                 if (inputPlayerName != null && inputPlayerName != "") {
                     playerName = inputPlayerName
                 } else { playerName = 'Anonymous doggo'

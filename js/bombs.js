@@ -1,4 +1,4 @@
-class Squirrels {
+class Bombs {
     constructor (gameScreen, levelSpeed) {
         this.gameScreen = gameScreen ;
         this.width = 80 ;
@@ -6,7 +6,7 @@ class Squirrels {
         this.left = Math.floor(Math.random()* (800-this.width));
         this.top = -340;
         this.element = document.createElement('img') ;
-        this.element.src='imgs/flying-squirrel.png';
+        this.element.src='imgs/bomb.webp';
         this.element.style.position = 'absolute';
         this.element.style.height=`${this.height}px`;
         this.element.style.width=`${this.width}px`;
