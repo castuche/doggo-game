@@ -17,7 +17,7 @@ class Woofs {
     }
 
     move() {
-        this.top -= 2;
+        this.top -= 3;
         this.updatePosition ();
     }
 
@@ -36,7 +36,7 @@ class Woofs {
           woofRect.top < squirrelOrBombRect.bottom &&
           woofRect.bottom > squirrelOrBombRect.top
         ) {
-          const xPosition = woofRect.left - 500 ;
+          const xPosition = woofRect.left ;
           const yPosition = woofRect.top;
 
             let plus3 = document.createElement('img');
