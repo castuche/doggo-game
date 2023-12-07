@@ -1,6 +1,8 @@
 window.onload = function (){
     const startButton = document.getElementById('start-button') ;
     const restartButton = document.getElementById('restart-button') ;
+    const musicButton = document.getElementById('music-button') ;
+    const soundButton = document.getElementById('sound-button') ;
 
     let game;
 
@@ -14,7 +16,29 @@ window.onload = function (){
         startGame();})
 
     restartButton.addEventListener('click', () => {
-            location.reload()}) 
+        location.reload()}) 
+    
+    musicButton.addEventListener('click', musicToggle);
+
+    function musicToggle() {
+        console.log('clicked music toggle');
+        game.changeMusicState();
+        musicButton.removeEventListener('click', musicToggle);
+        setTimeout(() => {
+            musicButton.addEventListener('click', musicToggle);
+        }, 100);
+    }
+
+    soundButton.addEventListener('click', soundToggle);
+
+    function soundToggle() {
+        console.log('clicked sound toggle');
+        game.changeSoundState();
+        soundButton.removeEventListener('click', soundToggle);
+        setTimeout(() => {
+            soundButton.addEventListener('click', soundToggle);
+        }, 100);
+    }
 
     document.addEventListener('keydown', event => {
         if(event.code === 'ArrowLeft'){

@@ -22,6 +22,8 @@ class Game {
         this.audioOops = new Audio ('audio/oops.mp3') ;
         this.isFrench = false ;
         this.isSpiderman = false ;
+        this.isMusicOn = true ;
+        this.isSoundOn = true ;
 
         this.audioTheme.volume = 0.5;
     }
@@ -46,7 +48,8 @@ class Game {
     bark(){
         let woof = new Woofs(this.gameScreen,this.player.left,this.player.height);
         woof.move();
-        this.audioWoof.play();
+        if(this.isSoundOn){
+        this.audioWoof.play();}
 
         if (this.isFrench){
             woof.element.src = 'imgs/ouaf.png';
@@ -86,6 +89,28 @@ class Game {
         this.isFrench = false ;
     }
 
+    changeMusicState(){
+        console.log('Music state before change:', this.isMusicOn);
+        this.isMusicOn = !this.isMusicOn ;
+        if (this.isMusicOn){
+            this.audioTheme.play();
+            console.log('put music back on')}
+         else {
+            console.log('stop the music');
+            this.audioTheme.pause();
+        }
+        console.log('Music state after change:', this.isMusicOn);
+    }
+
+    changeSoundState(){
+        this.isSoundOn = !this.isSoundOn ;
+        if (this.isSoundOn){
+            console.log('put sounds back on')}
+         else {
+            console.log('stop the sounds');
+        }
+    } 
+
     gameLoop(){
 
 /*         if (this.timer === 0){
@@ -110,7 +135,8 @@ class Game {
             else {
                 currentSquirrel.element.remove()
                 console.log('squirrel reached floor');
-                this.audioOops.play();
+                if(this.isSoundOn){
+                    this.audioOops.play();}
                 const xPosition = currentSquirrel.left;
                 const yPosition = 560;
     
@@ -138,7 +164,8 @@ class Game {
             if (currentReward.top<600-currentReward.element.height){
                 if (this.player.didCollide(currentReward)) {
                     console.log('reward caught');
-                    this.audioGulp.play();
+                    if (this.isSoundOn){
+                    this.audioGulp.play();}
                     currentReward.element.remove()
                     this.score+=1;
                     console.log (this.score);
@@ -211,7 +238,8 @@ class Game {
                 }
             } else {
                 console.log('bomb touched floor > game over');
-                this.audioBomb.play();
+                if (this.isSoundOn){
+                    this.audioBomb.play();}
                 currentBomb.element.remove();
                 this.gameIsOver = true;
             }

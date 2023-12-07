@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles.css" />
         <title>Doggo Game</title>
+        <link rel="icon" type="image/png" href="imgs/intro-dog.png">
     </head>
 
     <body>
@@ -22,9 +23,8 @@
                     <h2>Points</h2>
                     <ul>
                         <li><span class='strong'>+1 </span>for a steak</li>
-                        <li><span class='strong'>+3</span> for woofing at a squirrel</li>
+                        <li><span class='strong'>+3</span> for woofing at a squirrel or at a bomb</li>
                         <li><span class='strong'>-2</span> if a squirrel reaches the floor</li>
-                        <li><span class='strong'>Game Over</span> if a squirrel touches your doggo</li>
                     </ul>
                     <h2>Game Over</h2>
                     <ul>
@@ -40,6 +40,23 @@
         </div>
         
             <div id='game-screen'>
+                <div id="sound-control-box">
+                    <div class="music-sound-box">
+                        <img src="imgs/music-icon.webp" alt="music-icon">
+                        <label class="toggle" id="music-button">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="music-sound-box">
+                        <img src="imgs/sound-icon.png" alt="sound-icon">
+                        <label class="toggle" id="sound-button">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                </div>
                 <div id="stats">
                     <h2>Stats</h2>
                     <p>Score: <span id="score">0</span></p>
